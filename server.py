@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from weather import weather_by_city
 
 app = Flask(__name__)
@@ -6,11 +6,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    title = "Новости Python"
     weather = weather_by_city("Vyborg,Russia")
-    if weather:
-        return f"Погода: {weather['temp_C']}, ощущается как {weather['FeelsLikeC']}"
-    else:
-        return "Сервис погоды временно не доступен"
+    return render_template("index.html", title=title, weather=weather)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
