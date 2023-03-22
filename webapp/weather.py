@@ -1,8 +1,6 @@
 import requests
 from flask import current_app
 
-from webapp.config import WORLD_WEATHER_API_KEY
-
 
 def weather_by_city(city_name: str):
     weather_url = current_app.config["WEATHER_URL"]
